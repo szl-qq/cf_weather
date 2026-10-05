@@ -1,0 +1,24 @@
+{
+  "name": "cf-weather",
+  "version": "1.0.0",
+  "private": true,
+  "description": "商用级天气应用 · 聚合 8 个免费气象数据源 · 一键部署到 Cloudflare Pages",
+  "type": "module",
+  "scripts": {
+    "deploy": "node deploy.mjs",
+    "dev": "wrangler pages dev public --port 8788"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  },
+  "keywords": [
+    "weather",
+    "cloudflare-pages",
+    "open-meteo",
+    "serverless"
+  ],
+  "license": "MIT"
+}

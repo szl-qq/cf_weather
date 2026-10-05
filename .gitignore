@@ -1,0 +1,17 @@
+# 依赖
+node_modules/
+.pnpm-store/
+
+# Cloudflare
+.wrangler/
+.dev.vars
+
+# 构建产物
+dist/
+.output/
+
+# 系统
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*

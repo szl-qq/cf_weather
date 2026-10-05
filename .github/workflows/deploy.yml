@@ -1,0 +1,32 @@
+name: Deploy to Cloudflare Pages
+
+# 推送到 main 分支即自动部署
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:   # 也可在 GitHub 网页手动触发
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Build & Deploy
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 安装 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 这一步就是「那一条命令」——在 GitHub 的服务器上执行，不用你本机装任何东西
+      - name: 部署到 Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy public --project-name=cf-weather --branch=main
